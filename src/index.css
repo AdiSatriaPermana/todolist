@@ -1,0 +1,77 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #202020;
+  background: #ffffff;
+
+  --bg: #ffffff;
+  --surface: #f7f7f7;
+  --card: #ffffff;
+  --text: #202020;
+  --muted: #777777;
+  --border: #e8e8e8;
+  --accent: #c98c6c;
+  --accent-hover: #b87959;
+  --input-bg: #ffffff;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --bg: #171313;
+  --surface: #1e1b19;
+  --card: #24221f;
+  --text: #e9e3da;
+  --muted: #b8ada4;
+  --border: #39332f;
+  --accent: #c98c6c;
+  --accent-hover: #dda183;
+  --input-bg: #1e1b19;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: #c98c6c;
+  color: #171313;
+}

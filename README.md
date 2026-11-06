@@ -1,75 +1,46 @@
-# React + TypeScript + Vite
+# 📝 TodoList — Aplikasi Manajemen Tugas Kuliah
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi web manajemen tugas interaktif berbasis **React**, **TypeScript**, dan **Vite** yang dirancang khusus untuk membantu mahasiswa mencatat, mengorganisir, dan memantau status penyelesaian tugas kuliah dalam satu tempat secara efisien.
 
-Currently, two official plugins are available:
+🚀 **Live Demo:** [https://todolist-chi-dusky.vercel.app/](https://todolist-chi-dusky.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Fitur Utama
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- ➕ **Tambah & Edit Tugas**: Menambahkan tugas baru lengkap dengan deskripsi dan tanggal tenggat (*deadline*).
+- ✅ **Manajemen Status**: Menandai tugas sebagai selesai (*completed*) atau belum selesai (*pending*).
+- 🗑️ **Hapus Tugas**: Menghapus tugas yang sudah tidak diperlukan dengan konfirmasi keamanan.
+- 🔍 **Filter Kategori**: Menyaring tampilan tugas berdasarkan status (*Semua*, *Belum Selesai*, dan *Selesai*).
+- 📊 **Statistik Real-Time**: Menampilkan total tugas, tugas pending, dan tugas yang telah diselesaikan.
+- 🌓 **Mode Gelap & Terang (Dark/Light Theme)**: Dukungan ganti tema antarmuka visual sesuai kenyamanan pengguna.
+- 💾 **Penyimpanan Lokal (LocalStorage)**: Data tugas dan preferensi tema tersimpan otomatis di browser secara persisten.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Teknologi yang Digunakan
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Styling**: Modern CSS (Custom Properties, Flexbox, CSS Grid)
+- **Deployment**: [Vercel](https://vercel.com/)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Cara Menjalankan di Lokal (Development)
 
-```
+Pastikan kamu sudah menginstal [Node.js](https://nodejs.org/) di komputer kamu.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+```bash
+# 1. Clone repository ini
+git clone [https://github.com/AdiSatriaPermana/todolist.git](https://github.com/AdiSatriaPermana/todolist.git)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# 2. Masuk ke direktori proyek
+cd todolist
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 3. Instal dependensi
+npm install
 
-```
+# 4. Jalankan server pengembangan
+npm run dev

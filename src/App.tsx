@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { Sun, Moon, Plus, Pencil, Trash2, Check, ArrowDown, ListTodo } from "lucide-react";
+import { Sun, Moon, Plus, Pencil, Trash2, Check, ArrowDown, ListTodo, CheckSquare } from "lucide-react";
 import "./App.css";
 
 import type { Todo, TodoFilter, TodoStatus } from "./types/todo";
@@ -7,13 +7,16 @@ import type { Todo, TodoFilter, TodoStatus } from "./types/todo";
 const STORAGE_KEY = "todolist-adi";
 const THEME_KEY = "todolist-theme";
 
-const APP_NAME: string = import.meta.env.VITE_APP_NAME || "My Tasks";
 const APP_VERSION: string = import.meta.env.VITE_APP_VERSION || "1.0.0";
 
 function App() {
   // ==========================================
-  // THEME
+  // TITLE BROWSER & THEME
   // ==========================================
+
+  useEffect(() => {
+    document.title = "TodoList";
+  }, []);
 
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     const savedTheme = localStorage.getItem(THEME_KEY);
@@ -51,7 +54,6 @@ function App() {
   const [filter, setFilter] = useState<TodoFilter>("all");
   const [editingId, setEditingId] = useState<number | null>(null);
 
-  // Simpan tugas secara otomatis
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
@@ -85,7 +87,7 @@ function App() {
   }, [todos, filter]);
 
   // ==========================================
-  // FORM
+  // FORM HANDLER
   // ==========================================
 
   function resetForm() {
@@ -104,7 +106,6 @@ function App() {
     }
 
     if (editingId !== null) {
-      // Update tugas
       setTodos((currentTodos) =>
         currentTodos.map((todo) =>
           todo.id === editingId
@@ -118,7 +119,6 @@ function App() {
         )
       );
     } else {
-      // Tambah tugas baru
       const newTodo: Todo = {
         id: Date.now(),
         title: title.trim(),
@@ -157,10 +157,6 @@ function App() {
     }
   }
 
-  // ==========================================
-  // CHANGE TASK STATUS
-  // ==========================================
-
   function toggleStatus(id: number) {
     setTodos((currentTodos) =>
       currentTodos.map((todo) => {
@@ -177,10 +173,6 @@ function App() {
     );
   }
 
-  // ==========================================
-  // FORMAT DATE
-  // ==========================================
-
   function formatDeadline(date: string): string {
     if (!date) return "Tidak ada deadline";
 
@@ -191,56 +183,27 @@ function App() {
     });
   }
 
-  // ==========================================
-  // UI
-  // ==========================================
-
   return (
     <main className="app-container">
-      {/* HEADER */}
+      {/* HEADER COMPACT */}
       <header className="top-header">
-        <nav className="top-nav">
-          <a
-            href="https://adisatriapermana.my.id"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-card"
-          >
-            <span className="nav-card-title">Website Utama</span>
-            <span className="nav-card-description">Personal Website ↗</span>
-          </a>
+        <div className="brand-logo">
+          <CheckSquare size={22} className="brand-icon" />
+          <h1 className="brand-title">TodoList</h1>
+        </div>
 
-          <a href="#" className="nav-card">
-            <span className="nav-card-title">Penjelasan</span>
-            <span className="nav-card-description">Materi & Dokumentasi</span>
-          </a>
-
-          <a href="#" className="nav-card">
-            <span className="nav-card-title">PDF</span>
-            <span className="nav-card-description">Dokumen Tugas</span>
-          </a>
-
-          <div className="nav-card nav-card-active">
-            <span className="nav-card-title">
-              {APP_NAME} <span className="task-count">({totalTasks})</span>
-            </span>
-            <span className="nav-card-description">Todo List Application</span>
-          </div>
-
-          {/* Tombol Toggle Theme */}
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle Theme"
-            title="Ganti Tema"
-          >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-        </nav>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label="Toggle Theme"
+          title="Ganti Tema"
+        >
+          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
       </header>
 
-      {/* HERO */}
+      {/* HERO SECTION */}
       <section className="hero">
         <div className="hero-tag">
           <span className="tag-dot"></span>

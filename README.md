@@ -1,4 +1,4 @@
-# 📝 TodoList — Aplikasi Manajemen Tugas Kuliah
+# 📝 TodoList — Aplikasi Manajemen Tugas Kuliah...
 
 Aplikasi web manajemen tugas interaktif berbasis **React**, **TypeScript**, dan **Vite** yang dirancang khusus untuk membantu mahasiswa mencatat, mengorganisir, dan memantau status penyelesaian tugas kuliah dalam satu tempat secara efisien.
 

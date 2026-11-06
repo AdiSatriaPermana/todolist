@@ -1,4 +1,3 @@
-
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Sun, Moon, Plus, Pencil, Trash2, Check, ArrowDown, ListTodo } from "lucide-react";
 import "./App.css";
@@ -18,7 +17,6 @@ function App() {
 
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     const savedTheme = localStorage.getItem(THEME_KEY);
-
     return savedTheme === "dark" ? "dark" : "light";
   });
 
@@ -37,7 +35,6 @@ function App() {
 
   const [todos, setTodos] = useState<Todo[]>(() => {
     const savedTodos = localStorage.getItem(STORAGE_KEY);
-
     if (savedTodos) {
       try {
         return JSON.parse(savedTodos) as Todo[];
@@ -45,7 +42,6 @@ function App() {
         return [];
       }
     }
-
     return [];
   });
 
@@ -201,39 +197,47 @@ function App() {
 
   return (
     <main className="app-container">
-
       {/* HEADER */}
-      <header className="topbar">
-        <a
-          href="https://adisatriapermana.my.id"
-          className="back-link"
-        >
-          <span>←</span> Website Utama
-        </a>
+      <header className="top-header">
+        <nav className="top-nav">
+          <a
+            href="https://adisatriapermana.my.id"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-card"
+          >
+            <span className="nav-card-title">Website Utama</span>
+            <span className="nav-card-description">Personal Website ↗</span>
+          </a>
 
-        <div className="topbar-right">
-          <div className="version-label">
-            {APP_NAME} <span>v{APP_VERSION}</span>
+          <a href="#" className="nav-card">
+            <span className="nav-card-title">Penjelasan</span>
+            <span className="nav-card-description">Materi & Dokumentasi</span>
+          </a>
+
+          <a href="#" className="nav-card">
+            <span className="nav-card-title">PDF</span>
+            <span className="nav-card-description">Dokumen Tugas</span>
+          </a>
+
+          <div className="nav-card nav-card-active">
+            <span className="nav-card-title">
+              {APP_NAME} <span className="task-count">({totalTasks})</span>
+            </span>
+            <span className="nav-card-description">Todo List Application</span>
           </div>
 
+          {/* Tombol Toggle Theme */}
           <button
             type="button"
             className="theme-toggle"
             onClick={toggleTheme}
-            aria-label={
-              theme === "dark"
-                ? "Aktifkan mode terang"
-                : "Aktifkan mode gelap"
-            }
-            title={theme === "dark" ? "Mode terang" : "Mode gelap"}
+            aria-label="Toggle Theme"
+            title="Ganti Tema"
           >
-            {theme === "dark" ? (
-              <Sun size={19} />
-            ) : (
-              <Moon size={19} />
-            )}
+            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-        </div>
+        </nav>
       </header>
 
       {/* HERO */}
@@ -250,10 +254,10 @@ function App() {
         </h1>
 
         <p className="hero-description">
-          Aplikasi sederhana untuk membantu mahasiswa mengelola
-          tugas kuliah dengan lebih mudah dan terorganisir.
-          Tambahkan tugas, atur deadline, perbarui informasi,
-          dan pantau status penyelesaiannya dalam satu tempat.
+          Aplikasi sederhana untuk membantu mahasiswa mengelola tugas kuliah
+          dengan lebih mudah dan terorganisir. Tambahkan tugas, atur deadline,
+          perbarui informasi, dan pantau status penyelesaiannya dalam satu
+          tempat.
         </p>
 
         <div className="hero-actions">
@@ -261,9 +265,7 @@ function App() {
             Mulai Kelola Tugas <ArrowDown size={17} />
           </a>
 
-          <span className="hero-note">
-            Catat · Atur · Selesaikan
-          </span>
+          <span className="hero-note">Catat · Atur · Selesaikan</span>
         </div>
       </section>
 
@@ -305,16 +307,12 @@ function App() {
 
       {/* MAIN CONTENT */}
       <section className="content-grid" id="task-manager">
-
         {/* FORM */}
         <div className="form-card">
           <div className="section-heading">
             <div>
               <span className="eyebrow">TASK MANAGER</span>
-
-              <h2>
-                {editingId !== null ? "Edit Tugas" : "Tambah Tugas"}
-              </h2>
+              <h2>{editingId !== null ? "Edit Tugas" : "Tambah Tugas"}</h2>
             </div>
 
             <button
@@ -330,7 +328,6 @@ function App() {
 
           <form onSubmit={handleSubmit}>
             <label htmlFor="task-title">Nama Tugas</label>
-
             <input
               id="task-title"
               type="text"
@@ -341,7 +338,6 @@ function App() {
             />
 
             <label htmlFor="task-description">Deskripsi</label>
-
             <textarea
               id="task-description"
               placeholder="Tambahkan detail tugas..."
@@ -351,7 +347,6 @@ function App() {
             />
 
             <label htmlFor="task-deadline">Deadline</label>
-
             <input
               id="task-deadline"
               type="date"
@@ -389,9 +384,7 @@ function App() {
               <h2>Daftar Tugas</h2>
             </div>
 
-            <span className="task-count">
-              {totalTasks} tugas
-            </span>
+            <span className="task-count">{totalTasks} tugas</span>
           </div>
 
           {/* FILTER */}
@@ -426,7 +419,6 @@ function App() {
             {filteredTodos.length === 0 ? (
               <div className="empty-state">
                 <h3>Belum ada tugas</h3>
-
                 <p>
                   {filter === "all"
                     ? "Tambahkan tugas pertamamu melalui formulir."
@@ -443,9 +435,7 @@ function App() {
                     aria-label="Ubah status tugas"
                     title="Ubah status tugas"
                   >
-                    {todo.status === "completed" && (
-                      <Check size={16} />
-                    )}
+                    {todo.status === "completed" && <Check size={16} />}
                   </button>
 
                   <div className="task-details">
@@ -453,9 +443,7 @@ function App() {
                       {todo.title}
                     </h3>
 
-                    {todo.description && (
-                      <p>{todo.description}</p>
-                    )}
+                    {todo.description && <p>{todo.description}</p>}
 
                     <span className="deadline">
                       ◷ {formatDeadline(todo.deadline)}
